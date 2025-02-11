@@ -1,0 +1,17 @@
+#list-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  #com {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  #com:hover {
+    transform: scale(1.1);
+  }
+  
