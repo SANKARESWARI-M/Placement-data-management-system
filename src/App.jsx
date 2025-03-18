@@ -13,6 +13,7 @@ import Recruiters from "./component/student/Recruiter";
 import StudentProfile from "./component/student/profile";
 import UpcomingDrives from "./component/student/UpcomingDrive";
 import RegisteredStudents from "./component/admin/AdminRegisteredStudents";
+import Status from "./component/student/Status";
 const App = () => {
   return (
     <Router>
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/recruiters" element={<Recruiters />} />
           <Route path="recruiters/student/company/:companyName" element={<CompanyDetails />} />
           <Route path='/upcoming-drive' element={<UpcomingDrives/>}/>
+          <Route path='/status' element={<Status/>}/>
 
           {/* Student Routes */}
           <Route path="/student" element={<Navbar />} /> {/* Consider wrapping in StudentDashboard */}
