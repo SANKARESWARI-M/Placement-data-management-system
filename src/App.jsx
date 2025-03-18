@@ -1,44 +1,89 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom"; 
-import HomePage from "./component/Home";
-import AdminRecruiters from "./component/AdminRecruiters";
-import PostDrive from "./component/Drive";
-import UpdateShortlist from "./component/Shortlist";
-import StudentRecruiters from "./component/StudentRecruiters";
-import Zoho from "./component/company/Zoho";
-import CompanyPage from "./component/company/companyPage";  // Ensure this is correctly imported
-
+import HomePage from "./component/admin/AdminHome";
+import AdminRecruiters from "./component/admin/company/AdminRecruiters";
+import Drive from "./component/Drive";
+import CompanyDetails from "./component/admin/company/CompanyDetails";
+import Login from "./component/Login";
+import Navbar from "./component/student/navbar";
+import Home from "./component/student/home";
+import AdminUpcomingDrives from "./component/admin/AdminUpcommingDrives";
+import AdminNavbar from "./component/admin/AdminNavbar"
+import Recruiters from "./component/student/Recruiter";
+import StudentProfile from "./component/student/profile";
+import UpcomingDrives from "./component/student/UpcomingDrive";
+import RegisteredStudents from "./component/admin/AdminRegisteredStudents";
 const App = () => {
-    return (
-        <Router>
-            <div>
-                <h1>Recruitment Management System</h1>
-                <nav>
-                    <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/admin">Admin Recruiters</Link></li>
-                        <li><Link to="/students">Student Recruiters</Link></li>
-                        <li><Link to="/drive">Post Drive</Link></li>
-                        <li><Link to="/shortlist">Update Shortlist</Link></li>
-                    </ul>
-                </nav>
+  return (
+    <Router>
+      <div>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/recruiters" element={<Recruiters />} />
+          <Route path="recruiters/student/company/:companyName" element={<CompanyDetails />} />
+          <Route path='/upcoming-drive' element={<UpcomingDrives/>}/>
 
-                <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/admin" element={<AdminRecruiters />} />
-                    <Route path="/students" element={<StudentRecruiters />} />
-                    <Route path="/drive" element={<PostDrive />} />
-                    <Route path="/shortlist" element={<UpdateShortlist />} />
-                    
-                    {/* Direct Route for Zoho */}
-                    <Route path="/company/zoho" element={<Zoho />} />
+          {/* Student Routes */}
+          <Route path="/student" element={<Navbar />} /> {/* Consider wrapping in StudentDashboard */}
 
-                    {/* Dynamic Route for any company */}
-                    <Route path="/company/:companyName" element={<CompanyPage />} />
-                </Routes>
-            </div>
-        </Router>
-    );
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminNavbar />} />
+          <Route path="/admin-home" element={<HomePage />} />
+          <Route path="/admin-recruiters" element={<AdminRecruiters />} />
+          <Route path="/admin-drive" element={<Drive />} />
+          <Route path="/admin-upcoming-drive" element={<AdminUpcomingDrives />} />
+          <Route path="/company/:companyName" element={<CompanyDetails />} />
+          <Route path="/studentprofile" element={<StudentProfile />} />
+          <Route path="/admin-registered-students" element={<RegisteredStudents/>}/>
+        </Routes>
+      </div>
+    </Router>
+  );
 };
 
 export default App;
+
+
+
+
+// import React from "react";
+// import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom"; 
+// import HomePage from "./component/admin/AdminHome";
+// import AdminRecruiters from "./component/admin/company/AdminRecruiters";
+// import Drive from "./component/Drive";
+// import CompanyDetails from "./component/admin/company/CompanyDetails";
+// import Login from "./component/Login";
+// import Navbar from "./component/student/navbar";
+// import Home from "./component/student/home";
+// import UpcomingDrives from "./component/admin/UpcommingDrives";
+// import AdminNavbar from "./component/admin/AdminNavbar"
+// import Recruiters from "./component/student/Recruiter";
+
+// const App = () => {
+//     // return (
+//     //     <Router>
+//     //         <div>
+//     //             <Routes>
+//     //             <Route path="/" element={<Login />}></Route>
+//     //             <Route path="/student" element={<Navbar />}></Route>
+//     //             <Route path="/home" element={<Home />}></Route>
+//     //             <Route path="/recruiter" element={<Recruiters/>}></Route>
+               
+//     //            <Route path="/admin" element={<AdminNavbar />}/>
+//     //       <Route path="/admin-home" element={<HomePage />} />
+//     //       <Route path="/admin-recruiters" element={<AdminRecruiters />} />
+//     //       <Route path="/admin-drive" element={<Drive />} /> 
+//     //       <Route path="/company/:companyName" element={<CompanyDetails />} />
+//     //       <Route path="/admin-upcoming-drive" element={<UpcomingDrives />}/>
+          
+//     //     </Routes>
+               
+      
+//     //         </div>
+//     //     </Router>
+//     // );
+// };
+
+// export default App;

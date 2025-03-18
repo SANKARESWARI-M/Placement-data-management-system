@@ -1,0 +1,157 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+  }
+  
+  body {
+    background: #f4f4f4;
+  }
+  
+  /* Header */
+  .header {
+    background: #004085;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .college-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .college-logo {
+    width: 80px;
+    height: auto;
+    margin-right: 15px;
+  }
+  
+  .college-text h1 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  .college-text p {
+    font-size: 14px;
+  }
+  
+  .other-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .tnea-code {
+    text-align: center;
+    margin-right: 20px;
+  }
+  
+  .tnea-code h2 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  .person-image {
+    width: 80px;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  /* Centered Login Form */
+  .center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 150px);
+    width: 400px;
+    margin-left: 600px;
+  }
+  
+  .banner {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 20px;
+  }
+  
+  .container {
+    background: white;
+    padding: 30px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .container h2 {
+    margin-bottom: 15px;
+    color: #004085;
+  }
+  
+  .container img {
+    width: 60px;
+    margin-bottom: 15px;
+  }
+  
+ 
+  
+ #userid, #password {
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    font-size: 14px;
+  }
+  
+  input:focus {
+    border-color: #004085;
+  }
+  
+  /* Button */
+  #login{
+    width: 30%;
+    padding: 10px;
+    /* background: #28a745; */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container {
+      width: 90%;
+    }
+  
+    .header-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .college-info, .other-info {
+      flex-direction: column;
+    }
+  
+    .college-logo, .person-image {
+      margin-bottom: 10px;
+    }
+  }
+  

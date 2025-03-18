@@ -1,0 +1,66 @@
+/* Main Recruiters Container */
+.recruiters-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* Individual Recruiter Card */
+  .recruiter-card {
+    text-align: center;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    width: 180px;
+    cursor: pointer;
+  }
+  
+  .recruiter-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Recruiter Logo */
+  .recruiter-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .recruiter-logo:hover {
+    opacity: 0.8;
+  }
+  
+  /* Company Name */
+  .company-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 5px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .recruiters-container {
+      gap: 15px;
+    }
+  
+    .recruiter-card {
+      width: 150px;
+    }
+  
+    .recruiter-logo {
+      width: 80px;
+    }
+  
+    .company-name {
+      font-size: 12px;
+    }
+  }
+  
