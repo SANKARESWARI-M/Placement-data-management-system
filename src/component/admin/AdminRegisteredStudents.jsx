@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../../styles/adminStudentsregistered.css";
 import { saveAs } from "file-saver";
+import Navbar from './AdminNavbar'
 
 const AdminRegisteredStudents = () => {
   const [registeredStudents, setRegisteredStudents] = useState([]);
@@ -158,6 +159,7 @@ const AdminRegisteredStudents = () => {
 
   return (
     <>
+    <Navbar/>
       <div className="admin-dashboard">
         <h2>Registered Students</h2>
 

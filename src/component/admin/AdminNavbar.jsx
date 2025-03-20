@@ -13,7 +13,7 @@ const Navbar = () => {
         <li><Link to="/admin-recruiters">Recruiters</Link></li>
         <li><Link to="/admin-upcoming-drive">Upcoming Drive</Link></li>
         <li><Link to="/admin-registered-students">Registered Student</Link></li>
-        <li><Link to="/admin-status">Status</Link></li>
+        
       </ul>
 
       <div className="navbar-icons">

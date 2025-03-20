@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Navbar from "./navbar";
 
 
 const Status = () => {
@@ -20,7 +21,7 @@ const Status = () => {
 
   return (
     <>
-      
+      <Navbar/>
       <div className="status-dashboard">
         <h2>Student Status</h2>
 

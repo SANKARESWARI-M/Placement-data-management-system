@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-// import Student from '../../Student';
-// import './StudentUpcomingDrives.css';
 import '../../styles/studentUpcomingDrive.css';
+import Navbar from './navbar';
 
 const StudentUpcomingDrives = () => {
   const [drives, setDrives] = useState([]);
@@ -67,7 +66,7 @@ const StudentUpcomingDrives = () => {
 
   return (
     <>
-      
+      <Navbar/>
       <div className="student-upcomingdrive">
         <h1 className="title">Upcoming Drives</h1>
         <div className="drives-container">

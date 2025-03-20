@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom"; // ✅ Import useParams for URL data
+import { useLocation, useParams ,useNavigate} from "react-router-dom"; // ✅ Import useParams for URL data
 import axios from "axios";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import '../../../styles/companyDetails.css';
-import Navbar from "../AdminNavbar";
+
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const CompanyDetails = () => {
   const location = useLocation();
+  const navigate = useNavigate(); 
   const { companyName } = useParams(); // ✅ Get company name from URL
   const [company, setCompany] = useState(location.state?.company || null); // ✅ Initialize from state or null
   const [loading, setLoading] = useState(!company); // ✅ Show loading only if data is missing
@@ -116,7 +117,10 @@ const CompanyDetails = () => {
 
   return (
     <>
-    <Navbar/>
+    
+    <button onClick={() => navigate(-1)} className="back-button">
+        ← Back
+      </button>
     <div className="company-details-container">
       
       <div className="company-header">

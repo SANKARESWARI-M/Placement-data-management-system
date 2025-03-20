@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom'; 
 // import "../../ styles/StudentRecruiters.css";
 import '../../styles/StudentRecruiter.css'
-import Navbar from '../admin/AdminNavbar';
+import Navbar from './navbar';
 
 const StudentRecruiters = () => {
   const [recruiters, setRecruiters] = useState([]);
