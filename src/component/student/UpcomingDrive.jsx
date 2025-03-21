@@ -84,7 +84,7 @@ const StudentUpcomingDrives = () => {
               <p><strong>Date:</strong> {new Date(drive.date).toLocaleDateString()}</p>
               <p><strong>Time:</strong> {drive.time}</p>
               <p><strong>Venue:</strong> {drive.venue}</p>
-              <p><strong>Role:</strong> {drive.role}</p>
+              <p><strong>Role:</strong> {drive.roles}</p>
               <p><strong>Salary:</strong> {drive.salary}</p>
 
               <button
