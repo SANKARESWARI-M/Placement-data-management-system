@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/Login.css";
 import { useNavigate } from "react-router-dom";
-import Zohoimg from "../assets/zoho-img.png";
-import nec_logo from "../assets/nec_logo_2.jpg";
+import Navbar from "./publichomeNavbar"
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -16,7 +15,16 @@ const Login = () => {
     const storedRole = localStorage.getItem("role");
 
     if (storedUser && storedRole) {
-      navigate(storedRole === "admin" ? "/admin-home" : "/home");
+      if(storedRole==="admin"){
+        navigate("/admin-home");
+      }
+      else if(storedRole==="student"){
+        navigate("/home");
+      }
+      else if(storedRole==="staff"){
+        navigate("/staff-home");
+      }
+      
     }
   }, [navigate]);
 
@@ -39,7 +47,16 @@ const Login = () => {
         alert(message); // Show success message
 
         // Redirect user based on role
-        navigate(role === "admin" ? "/admin-home" : "/home");
+        if(role==="admin"){
+          navigate("/admin-home");
+        }
+        else if(role==="student"){
+          navigate("/home");
+        }
+        else if(role==="staff"){
+          navigate("/staff-home");
+        }
+        
       }
     } catch (error) {
       console.error("Login Error:", error);
@@ -49,24 +66,7 @@ const Login = () => {
 
   return (
     <>
-      <header className="header">
-        <div className="header-content">
-          <div className="college-info">
-            <img src={nec_logo} alt="College Logo" className="college-logo" />
-            <div className="college-text">
-              <h1 className="college-name">National Engineering College</h1>
-              <p className="college-address">K.R. Nagar, Kovilpatti - 628 503</p>
-            </div>
-          </div>
-          <div className="other-info">
-            <div className="tnea-code">
-              <p>TNEA Counselling Code</p>
-              <h2>4962</h2>
-            </div>
-          </div>
-        </div>
-      </header>
-
+      <Navbar/>
       <div className="center">
         <div className="container">
           <h2>Login</h2>

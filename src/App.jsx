@@ -16,6 +16,8 @@ import RegisteredStudents from "./component/admin/AdminRegisteredStudents";
 import Status from "./component/student/Status";
 
 import StudentRecruiter from "./component/student/StudentRecruiter";
+import PublicHome from "./component/publichome";
+import StaffHome from "./component/staff/staffHome";
 
 // Function to Get User Role (Stored in localStorage)
 const getUserRole = () => {
@@ -29,6 +31,7 @@ const Layout = ({ children }) => {
     <>
       {role === "admin" && <AdminNavbar />}
       {role === "student" && <StudentNavbar />}
+      {role==="staff" && <StudentNavbar/>}
       {children}
     </>
   );
@@ -39,8 +42,11 @@ const App = () => {
     <Router>
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<PublicHome />} />
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/staff-home" element={<StaffHome/>}/>
 
+        
         {/* Student Routes - Wrapped with Student Navbar */}
         <Route path="/home" element={<Layout><StudentHome /></Layout>} />
         <Route path="/recruiters" element={<Layout><StudentRecruiter /></Layout>} />

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import '../../styles/Navbar.css';
 import LogoutButton from "../Logout";
-
+import LoginButton from "../Login";
 const Navbar = () => {
   return (
     <nav className="navbar">

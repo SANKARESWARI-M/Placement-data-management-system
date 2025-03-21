@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../../styles/home.css";
-import Navbar from "./AdminNavbar";
-import Clgimg from "../../assets/clg.jpg";
+import "../styles/home.css"
+import Navbar from "./publichomeNavbar"
+// import Clgimg from "../assets/clg.jpg"
 
 const Home = () => {
   const [stats, setStats] = useState({ total_students: 0, avg_salary: 0 });
@@ -101,7 +101,7 @@ const Home = () => {
       <Navbar />
       <div className="home-container">
         <h3>NEC PLACEMENT</h3>
-        <img src={Clgimg} alt="College Image" />
+        {/* <img src={Clgimg} alt="College Image" /> */}
         {/* Statistics Section */}
         <div className="stats-container">
           <div className="stat-box">

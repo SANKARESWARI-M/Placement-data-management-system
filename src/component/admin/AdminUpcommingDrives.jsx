@@ -13,7 +13,7 @@ const UpcomingDrives = () => {
         time: '',
         venue: '',
         roles: '',
-        package: '',
+        salary: '',
     });
     const [postFile, setPostFile] = useState(null);
 
@@ -31,9 +31,9 @@ const UpcomingDrives = () => {
     };
 
     const handleDeleteDrive = async (id) => {
-        if (!window.confirm("Are you sure you want to delete this drive?")) {
-            return;
-        }
+        // if (!window.confirm("Are you sure you want to delete this drive?")) {
+        //     return;
+        // }
 
         try {
             await axios.delete(`http://localhost:5000/api/upcoming-drives/${id}`);
@@ -58,6 +58,7 @@ const UpcomingDrives = () => {
         const formPayload = new FormData();
         formPayload.append('post', postFile);
         Object.keys(formData).forEach((key) => formPayload.append(key, formData[key]));
+        console.log("Submitting Data:", Object.fromEntries(formPayload.entries()));
 
         try {
             await axios.post('http://localhost:5000/api/upcoming-drives', formPayload, {
@@ -107,7 +108,7 @@ const UpcomingDrives = () => {
                             <input type="text" name="venue" onChange={handleChange} required />
 
                             <label>Package:</label>
-                            <input type="text" name="package" onChange={handleChange} required />
+                            <input type="text" name="salary" onChange={handleChange} required />
 
                             <label>Roles:</label>
                             <input type="text" name="roles" onChange={handleChange} required />
@@ -136,8 +137,8 @@ const UpcomingDrives = () => {
                 <p><strong>Date:</strong> {drive.date}</p>
                 <p><strong>Time:</strong> {drive.time}</p>
                 <p><strong>Venue:</strong> {drive.venue}</p>
-                <p><strong>Roles:</strong> {drive.package}</p>
-                <p><strong>Package:</strong> {drive.roles}</p> {/* ✅ FIX: Ensure roles are displayed */}
+                <p><strong>Package:</strong> {drive.salary}</p>
+                <p><strong>Role:</strong> {drive.roles}</p> {/* ✅ FIX: Ensure roles are displayed */}
                 <button className="delete-btn" onClick={() => handleDeleteDrive(drive.id)}>Delete</button>
             </div>
         ))
