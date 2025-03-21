@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-//import Student from "../../Student";
-//import './StudentProfile.css';
+import Navbar from "./navbar";
+import '../../styles/StudentProfile.css';
 
 const StudentProfile = () => {
     const [formData, setFormData] = useState({
@@ -77,6 +77,7 @@ const StudentProfile = () => {
 
     return (
         <>
+        <Navbar/>
           <div className="profile-container">
             <h2>Student Profile</h2>
             <form onSubmit={handleSubmit}>

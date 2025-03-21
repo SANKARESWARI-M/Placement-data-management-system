@@ -9,12 +9,12 @@ import StudentNavbar from "./component/student/navbar";
 import StudentHome from "./component/student/home";
 import AdminUpcomingDrives from "./component/admin/AdminUpcommingDrives";
 import AdminNavbar from "./component/admin/AdminNavbar";
-import Recruiters from "./component/student/Recruiter";
+
 import StudentProfile from "./component/student/profile";
 import UpcomingDrives from "./component/student/UpcomingDrive";
 import RegisteredStudents from "./component/admin/AdminRegisteredStudents";
 import Status from "./component/student/Status";
-import StudentCompanyDetails from "./component/student/StudentCompanyDetails";
+
 import StudentRecruiter from "./component/student/StudentRecruiter";
 
 // Function to Get User Role (Stored in localStorage)

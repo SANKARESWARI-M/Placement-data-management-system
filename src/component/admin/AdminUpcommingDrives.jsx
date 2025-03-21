@@ -12,8 +12,8 @@ const UpcomingDrives = () => {
         date: '',
         time: '',
         venue: '',
-        role: '',
-        salary: '',
+        roles: '',
+        package: '',
     });
     const [postFile, setPostFile] = useState(null);
 
@@ -106,11 +106,11 @@ const UpcomingDrives = () => {
                             <label>Venue:</label>
                             <input type="text" name="venue" onChange={handleChange} required />
 
-                            <label>Role:</label>
-                            <input type="text" name="role" onChange={handleChange} required />
+                            <label>Package:</label>
+                            <input type="text" name="package" onChange={handleChange} required />
 
-                            <label>Venue:</label>
-                            <input type="text" name="role" onChange={handleChange} required />
+                            <label>Roles:</label>
+                            <input type="text" name="roles" onChange={handleChange} required />
 
                             <button type="submit">Submit</button>
                         </form>
@@ -119,29 +119,39 @@ const UpcomingDrives = () => {
 
                 {/* Display Upcoming Drives */}
                 <div className="admin-drives-list">
-                    {drives.map((drive, index) => (
-                        <div key={index} className="admin-drive-card">
-                            {drive.post && (
-                                <img src={`http://localhost:5000/uploads/${drive.post}`} alt="Drive Post" className="admin-drive-img" />
-                            )}
-                            <p><strong>Company:</strong> {drive.company_name}</p>
-                            <p><strong>Eligibility:</strong> {drive.eligibility}</p>
-                            <p><strong>Date:</strong> {drive.date}</p>
-                            <p><strong>Time:</strong> {drive.time}</p>
-                            <p><strong>Venue:</strong> {drive.venue}</p>
-                            <p><strong>Role:</strong> {drive.role}</p>
-                            <p><strong>Salary:</strong> {drive.salary}</p>
-                            <button type='submit' onClick={() => handleDeleteDrive(drive.id)}>Delete</button>
-                        </div>
-                    ))}
-                </div>
+    {drives.length > 0 ? (
+        drives.map((drive, index) => (
+            <div key={index} className="admin-drive-card">
+                {drive.post && drive.post.endsWith(".pdf") ? (
+                    <a href={`http://localhost:5000/uploads/${drive.post}`} target="_blank" rel="noopener noreferrer" className="admin-drive-pdf">
+                        View PDF
+                    </a>
+                ) : (
+                    drive.post && (
+                        <img src={`http://localhost:5000/uploads/${drive.post}`} alt="Drive Post" className="admin-drive-img" />
+                    )
+                )}
+                <p><strong>Company:</strong> {drive.company_name}</p>
+                <p><strong>Eligibility:</strong> {drive.eligibility}</p>
+                <p><strong>Date:</strong> {drive.date}</p>
+                <p><strong>Time:</strong> {drive.time}</p>
+                <p><strong>Venue:</strong> {drive.venue}</p>
+                <p><strong>Roles:</strong> {drive.package}</p>
+                <p><strong>Package:</strong> {drive.roles}</p> {/* ✅ FIX: Ensure roles are displayed */}
+                <button className="delete-btn" onClick={() => handleDeleteDrive(drive.id)}>Delete</button>
+            </div>
+        ))
+    ) : (
+        <p className="no-drives">No upcoming drives available.</p>
+    )}
+</div>
+
             </div>
         </>
     );
 };
 
 export default UpcomingDrives;
-
 
 
 
