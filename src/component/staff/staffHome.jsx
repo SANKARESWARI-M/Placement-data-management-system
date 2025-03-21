@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../styles/home.css";
-import Navbar from "../student/navbar"
+import Navbar from "./staffnavbar"
 import Clgimg from "../../assets/clg.jpg";
 
 const Home = () => {
@@ -79,21 +79,31 @@ const Home = () => {
   };
 
 
-  const [recruiterCount, setRecruiterCount] = useState(0);
-  useEffect(() => {
-    fetch("http://localhost:5000/placed-students") // ✅ Fetch all students initially
-      .then((res) => res.json())
-      .then((data) => {
-        const sortedData = data.sort((a, b) => a.year - b.year); // ✅ Sort by year (ascending)
-        setStudentDetails(sortedData);
-        setFilteredData(sortedData); // ✅ Set sorted data initially
+  // const [recruiterCount, setRecruiterCount] = useState(0);
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/placed-students") // ✅ Fetch all students initially
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       const sortedData = data.sort((a, b) => a.year - b.year); // ✅ Sort by year (ascending)
+  //       setStudentDetails(sortedData);
+  //       setFilteredData(sortedData); // ✅ Set sorted data initially
 
-        // ✅ Calculate unique recruiters (companies)
-        const uniqueCompanies = new Set(sortedData.map(student => student.company_name));
-        setRecruiterCount(uniqueCompanies.size);
-      })
-      .catch((error) => console.error("Error fetching students:", error));
-  }, []);
+  //       // ✅ Calculate unique recruiters (companies)
+  //       const uniqueCompanies = new Set(sortedData.map(student => student.company_name));
+  //       setRecruiterCount(uniqueCompanies.size);
+  //     })
+  //     .catch((error) => console.error("Error fetching students:", error));
+  // }, []);
+   const [recruiterCount, setRecruiterCount] = useState(0);
+  
+    useEffect(() => {
+      fetch("http://localhost:5000/api/recruiterscount") // ✅ Corrected API URL
+        .then((res) => res.json())
+        .then((data) => {
+          setRecruiterCount(data.total); // ✅ Corrected data usage
+        })
+        .catch((error) => console.error("Error fetching recruiter count:", error));
+    }, []);
 
 
   return (

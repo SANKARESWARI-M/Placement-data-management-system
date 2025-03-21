@@ -65,7 +65,7 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div className="loginpage">
       <Navbar/>
       <div className="center">
         <div className="container">
@@ -95,7 +95,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

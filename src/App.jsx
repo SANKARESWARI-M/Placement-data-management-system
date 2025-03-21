@@ -18,6 +18,9 @@ import Status from "./component/student/Status";
 import StudentRecruiter from "./component/student/StudentRecruiter";
 import PublicHome from "./component/publichome";
 import StaffHome from "./component/staff/staffHome";
+import StaffNavbar from "./component/staff/staffnavbar";
+import StaffRecruiter from "./component/staff/staffRecruiters"
+import StaffUpcommingDrive from "./component/staff/staffUpcommingDrive";
 
 // Function to Get User Role (Stored in localStorage)
 const getUserRole = () => {
@@ -31,7 +34,7 @@ const Layout = ({ children }) => {
     <>
       {role === "admin" && <AdminNavbar />}
       {role === "student" && <StudentNavbar />}
-      {role==="staff" && <StudentNavbar/>}
+      {role==="staff" && <StaffNavbar/>}
       {children}
     </>
   );
@@ -45,7 +48,8 @@ const App = () => {
         <Route path="/" element={<PublicHome />} />
         <Route path="/login" element={<Login/>}/>
         <Route path="/staff-home" element={<StaffHome/>}/>
-
+        <Route path="/staff-recruiters" element={<StaffRecruiter/>}/>
+        <Route path="/staff-upcomingdrive" element={<StaffUpcommingDrive/>}/>
         
         {/* Student Routes - Wrapped with Student Navbar */}
         <Route path="/home" element={<Layout><StudentHome /></Layout>} />
