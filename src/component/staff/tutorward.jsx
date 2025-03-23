@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Navbar from "./staffnavbar"
 
 const StaffPage = () => {
     const [students, setStudents] = useState([]);
@@ -35,6 +36,7 @@ const StaffPage = () => {
 
     return (
         <div>
+            <Navbar/>
             <h2>Student Details</h2>
 
             {/* Filter Section */}

@@ -13,7 +13,7 @@ const Navbar = () => {
           alt="NEC Logo" 
           className="navbar-logo-img"
         />
-        <span>National Engineering College</span>
+        <h2>National Engineering College</h2>
       </div>
 
       {/* Right Section: Icons & Logout */}

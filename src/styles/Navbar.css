@@ -23,14 +23,19 @@
   font-weight: bold;
   gap: 12px;
   white-space: nowrap;
+
 }
 
 .navbar-logo-img {
   width: 60px;
   height: auto;
-  border-radius: 5px;
+  border-radius: 10px;
   margin-left: 20px;
 }
+.navbar-logo h2{
+  margin-left:500px;
+}
+
 
 /* Navigation Links */
 .navbar-links {

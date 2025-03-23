@@ -3,6 +3,7 @@ import axios from "axios";
 import "../styles/home.css"
 import Navbar from "./publichomeNavbar"
 // import Clgimg from "../assets/clg.jpg"
+import ImageSlider from "./imageslider"; // Import ImageSlider
 
 const Home = () => {
   const [stats, setStats] = useState({ total_students: 0, avg_salary: 0 });
@@ -100,7 +101,7 @@ const Home = () => {
     <>
       <Navbar />
       <div className="home-container">
-        <h3>NEC PLACEMENT</h3>
+        <h3 className="section-title">NEC Placement</h3>
         {/* <img src={Clgimg} alt="College Image" /> */}
         {/* Statistics Section */}
         <div className="stats-container">
@@ -117,6 +118,15 @@ const Home = () => {
             <p>₹{Number(stats.avg_salary).toFixed(2)} LPA</p>
           </div>
         </div>
+      
+
+
+<div className="container">
+  {/* <h2 className="section-title">Recent Placement Batches</h2> */}
+  <ImageSlider /> {/* ✅ This will show the automatic image slider */}
+</div>
+
+      
 
         <h2 className="home-subheading">PLACEMENT CENTER</h2>
         <p className="home-text">

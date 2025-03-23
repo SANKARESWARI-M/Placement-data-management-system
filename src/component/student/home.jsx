@@ -12,6 +12,13 @@ const Home = () => {
   const [selectedYear, setSelectedYear] = useState("");
 
 
+  const images = [
+    "https://nec.edu.in/wp-content/uploads/2024/05/IMG_20220915_145123-scaled-e1715150167202.jpg",
+    "https://nec.edu.in/wp-content/uploads/2024/05/IMG_20220903_192620-scaled.jpg",
+    "https://nec.edu.in/wp-content/uploads/2023/04/placment-22-23-copy.webp",
+    "https://nec.edu.in/wp-content/uploads/2023/04/placement_2020_2021-scaled-copy.webp",
+  ];
+
   // Fetch placement stats
   useEffect(() => {
     fetch("http://localhost:5000/stats")
@@ -76,33 +83,8 @@ const Home = () => {
     console.log("Filtered Data:", filteredResults);
     setFilteredData(filteredResults);
   };
-  
 
-//  const [recruiterCount, setRecruiterCount] = useState(0);
-//    useEffect(() => {
-<<<<<<< HEAD
-//      fetch("http://localhost:5000/placed-students") // ✅ Fetch all students initially
-=======
-//      fetch("http://localhost:5000/api/recruiterscount") // ✅ Fetch all students initially
->>>>>>> 72d0045 (Initial commit)
-//        .then((res) => res.json())
-//        .then((data) => {
-//          const sortedData = data.sort((a, b) => a.year - b.year); // ✅ Sort by year (ascending)
-//          setStudentDetails(sortedData);
-//          setFilteredData(sortedData); // ✅ Set sorted data initially
-   
-//          // ✅ Calculate unique recruiters (companies)
-//          const uniqueCompanies = new Set(sortedData.map(student => student.company_name));
-//          setRecruiterCount(uniqueCompanies.size);
-//        })
-//        .catch((error) => console.error("Error fetching students:", error));
-//    }, []);
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 72d0045 (Initial commit)
-const [recruiterCount, setRecruiterCount] = useState(0);
+  const [recruiterCount, setRecruiterCount] = useState(0);
 
 useEffect(() => {
   fetch("http://localhost:5000/api/recruiterscount") // ✅ Corrected API URL
@@ -163,6 +145,15 @@ useEffect(() => {
                   </ul>
               </li>
           </ul>
+
+
+          <div className="image-grid">
+      {images.map((image, index) => (
+        <div key={index} className="grid-item">
+          <img src={image} alt={`Placement Batch ${index + 1}`} />
+        </div>
+      ))}
+    </div>
 
         {/* Dropdown for selecting a company */}
         <div className="dropdown-container">

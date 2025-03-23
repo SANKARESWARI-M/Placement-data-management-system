@@ -112,7 +112,7 @@ const Home = () => {
       <Navbar />
       <div className="home-container">
         <h3>NEC PLACEMENT</h3>
-        <img src={Clgimg} alt="College Image" />
+        
         {/* Statistics Section */}
         <div className="stats-container">
           <div className="stat-box">
@@ -128,6 +128,7 @@ const Home = () => {
             <p>₹{Number(stats.avg_salary).toFixed(2)} LPA</p>
           </div>
         </div>
+        <img src={Clgimg} alt="College Image" />
 
         <h2 className="home-subheading">PLACEMENT CENTER</h2>
         <p className="home-text">
@@ -256,8 +257,17 @@ const Home = () => {
   <div className="contact-grid">
     {[
       {
+        title: "Address",
+        details:["National Engineering College (Autonomous),K.R.Nagar,Kovilpatti – 628 503.Thoothukudi Dt, Tamil Nadu, India."]
+      },
+      {
         title: "Contact",
         details: ["placement@nec.edu.in", "04632-226955,222502", "ext:1062 & 1025", "www.nec.edu.in"],
+      },
+      {
+        title: "Email",
+        details:["principal@nec.edu.in Fax:04632 – 232749www.nec.edu.in"]
+
       },
       {
         title: "Dean-Training and Placement Centre",
@@ -267,6 +277,11 @@ const Home = () => {
         title: "Placement Convener",
         details: ["Dr.V.Manimaran", "94432 30265"],
       },
+      {
+        title:"Help desk",
+        details: ["nechelpdesk@nec.edu.in"]
+      }
+      
     ].map((contact, index) => (
       <div className="contact-card" key={index}>
         <div className="contact-info">
