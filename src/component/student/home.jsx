@@ -80,7 +80,11 @@ const Home = () => {
 
 //  const [recruiterCount, setRecruiterCount] = useState(0);
 //    useEffect(() => {
+<<<<<<< HEAD
 //      fetch("http://localhost:5000/placed-students") // ✅ Fetch all students initially
+=======
+//      fetch("http://localhost:5000/api/recruiterscount") // ✅ Fetch all students initially
+>>>>>>> 72d0045 (Initial commit)
 //        .then((res) => res.json())
 //        .then((data) => {
 //          const sortedData = data.sort((a, b) => a.year - b.year); // ✅ Sort by year (ascending)
@@ -94,6 +98,10 @@ const Home = () => {
 //        .catch((error) => console.error("Error fetching students:", error));
 //    }, []);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 72d0045 (Initial commit)
 const [recruiterCount, setRecruiterCount] = useState(0);
 
 useEffect(() => {
