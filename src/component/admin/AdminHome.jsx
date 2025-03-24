@@ -3,6 +3,7 @@ import axios from "axios";
 import "../../styles/home.css";
 import Navbar from "./AdminNavbar";
 import Clgimg from "../../assets/clg.jpg";
+import ImageSlider from "../imageslider";
 
 const Home = () => {
   const [stats, setStats] = useState({ total_students: 0, avg_salary: 0 });
@@ -11,6 +12,13 @@ const Home = () => {
   const [studentDetails, setStudentDetails] = useState([]);
   const [filteredData, setFilteredData] = useState([]); // ✅ Holds filtered data
   const [selectedYear, setSelectedYear] = useState("");
+
+  const images = [
+    "https://nec.edu.in/wp-content/uploads/2024/05/IMG_20220915_145123-scaled-e1715150167202.jpg",
+    "https://nec.edu.in/wp-content/uploads/2024/05/IMG_20220903_192620-scaled.jpg",
+    "https://nec.edu.in/wp-content/uploads/2023/04/placment-22-23-copy.webp",
+    "https://nec.edu.in/wp-content/uploads/2023/04/placement_2020_2021-scaled-copy.webp",
+  ];
 
 
   // Fetch placement stats
@@ -128,7 +136,11 @@ const Home = () => {
             <p>₹{Number(stats.avg_salary).toFixed(2)} LPA</p>
           </div>
         </div>
-        <img src={Clgimg} alt="College Image" />
+        {/* <img src={Clgimg} alt="College Image" /> */}
+        <div className="container">
+  {/* <h2 className="section-title">Recent Placement Batches</h2> */}
+  <ImageSlider /> {/* ✅ This will show the automatic image slider */}
+</div>
 
         <h2 className="home-subheading">PLACEMENT CENTER</h2>
         <p className="home-text">
@@ -159,6 +171,15 @@ const Home = () => {
             </ul>
           </li>
         </ul>
+
+        <div className="image-grid">
+      {images.map((image, index) => (
+        <div key={index} className="grid-item">
+          <img src={image} alt={`Placement Batch ${index + 1}`} />
+        </div>
+      ))}
+    </div>
+
 
         {/* Dropdown for selecting a company */}
         <div className="dropdown-container">
@@ -218,36 +239,7 @@ const Home = () => {
         ) : (
           <p>No students found for the selected company.</p>
         )}
-        {/* Batch Images Section
-        {/* Batch Images Section 
-<div className="container">
-  <h2 className="section-title">Recent Placement Batches</h2>
-  <div className="batch-grid">
-    {[
-      {
-        img: "https://nec.edu.in/wp-content/uploads/2024/05/IMG_20220915_145123-scaled-e1715150167202.jpg",
-        year: "2024-2025",
-      },
-      {
-        img: "https://nec.edu.in/wp-content/uploads/2024/05/IMG_20220903_192620-scaled.jpg",
-        year: "2023-2024",
-      },
-      {
-        img: "https://nec.edu.in/wp-content/uploads/2023/04/placment-22-23-copy.webp",
-        year: "2022-2023",
-      },
-      {
-        img: "https://nec.edu.in/wp-content/uploads/2023/04/placement_2020_2021-scaled-copy.webp",
-        year: "2020-2021",
-      },
-    ].map((batch, index) => (
-      <div className="batch-card" key={index}>
-        <img src={batch.img} alt={`${batch.year} Batch`} />
-        <p>{batch.year} Batch</p>
-      </div>
-    ))}
-  </div>
-</div>*/}
+        
 
       </div> 
 

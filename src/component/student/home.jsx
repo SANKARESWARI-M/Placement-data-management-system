@@ -219,6 +219,64 @@ useEffect(() => {
           <p>No students found for the selected company.</p>
         )}
       </div>
+
+
+      {/* Contact Information Section */}
+<div className="container">
+  <h2 className="section-title">Contact Information</h2>
+  <div className="contact-grid">
+    {[
+      {
+        title: "Address",
+        details:["National Engineering College (Autonomous),K.R.Nagar,Kovilpatti – 628 503.Thoothukudi Dt, Tamil Nadu, India."]
+      },
+      {
+        title: "Contact",
+        details: ["placement@nec.edu.in", "04632-226955,222502", "ext:1062 & 1025", "www.nec.edu.in"],
+      },
+      {
+        title: "Email",
+        details:["principal@nec.edu.in Fax:04632 – 232749www.nec.edu.in"]
+
+      },
+      {
+        title: "Dean-Training and Placement Centre",
+        details: ["Dr.K.G.Srinivasagan", "94421 42502"],
+      },
+      {
+        title: "Placement Convener",
+        details: ["Dr.V.Manimaran", "94432 30265"],
+      },
+      {
+        title:"Help desk",
+        details: ["nechelpdesk@nec.edu.in"]
+      }
+      
+    ].map((contact, index) => (
+      <div className="contact-card" key={index}>
+        <div className="contact-info">
+          <h3>{contact.title}</h3>
+          {contact.details.map((info, i) => (
+            <p key={i}>{info}</p>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+{/* Footer */}
+<footer className="footer">
+  <div className="container">
+    <h3>The Principal</h3>
+    <p>National Engineering College, (Autonomous)</p>
+    <p>K.R.Nagar, Kovilpatti, Thoothukudi (Dt) - 628503</p>
+    <p>Ph: 04632 – 222 502; Fax: 232749</p>
+    <p>Mobile: 93859 76674, 93859 76684</p>
+    <p>Email: <a href="mailto:principal@nec.edu.in">principal@nec.edu.in</a></p>
+  </div>
+</footer>
+
     </>
   );
 };

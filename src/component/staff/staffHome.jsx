@@ -3,6 +3,7 @@ import axios from "axios";
 import "../../styles/home.css";
 import Navbar from "./staffnavbar"
 import Clgimg from "../../assets/clg.jpg";
+import ImageSlider from "../imageslider"; 
 
 const Home = () => {
   const [stats, setStats] = useState({ total_students: 0, avg_salary: 0 });
@@ -11,6 +12,13 @@ const Home = () => {
   const [studentDetails, setStudentDetails] = useState([]);
   const [filteredData, setFilteredData] = useState([]); // ✅ Holds filtered data
   const [selectedYear, setSelectedYear] = useState("");
+
+  const images = [
+    "https://nec.edu.in/wp-content/uploads/2024/05/IMG_20220915_145123-scaled-e1715150167202.jpg",
+    "https://nec.edu.in/wp-content/uploads/2024/05/IMG_20220903_192620-scaled.jpg",
+    "https://nec.edu.in/wp-content/uploads/2023/04/placment-22-23-copy.webp",
+    "https://nec.edu.in/wp-content/uploads/2023/04/placement_2020_2021-scaled-copy.webp",
+  ];
 
 
   // Fetch placement stats
@@ -78,22 +86,6 @@ const Home = () => {
     setFilteredData(filteredResults);
   };
 
-
-  // const [recruiterCount, setRecruiterCount] = useState(0);
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/placed-students") // ✅ Fetch all students initially
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       const sortedData = data.sort((a, b) => a.year - b.year); // ✅ Sort by year (ascending)
-  //       setStudentDetails(sortedData);
-  //       setFilteredData(sortedData); // ✅ Set sorted data initially
-
-  //       // ✅ Calculate unique recruiters (companies)
-  //       const uniqueCompanies = new Set(sortedData.map(student => student.company_name));
-  //       setRecruiterCount(uniqueCompanies.size);
-  //     })
-  //     .catch((error) => console.error("Error fetching students:", error));
-  // }, []);
    const [recruiterCount, setRecruiterCount] = useState(0);
   
     useEffect(() => {
@@ -127,6 +119,10 @@ const Home = () => {
             <p>₹{Number(stats.avg_salary).toFixed(2)} LPA</p>
           </div>
         </div>
+        <div className="container">
+  {/* <h2 className="section-title">Recent Placement Batches</h2> */}
+  <ImageSlider /> {/* ✅ This will show the automatic image slider */}
+</div>
 
         <h2 className="home-subheading">PLACEMENT CENTER</h2>
         <p className="home-text">
@@ -157,6 +153,13 @@ const Home = () => {
             </ul>
           </li>
         </ul>
+        <div className="image-grid">
+      {images.map((image, index) => (
+        <div key={index} className="grid-item">
+          <img src={image} alt={`Placement Batch ${index + 1}`} />
+        </div>
+      ))}
+    </div>
 
         {/* Dropdown for selecting a company */}
         <div className="dropdown-container">
@@ -255,8 +258,17 @@ const Home = () => {
   <div className="contact-grid">
     {[
       {
+        title: "Address",
+        details:["National Engineering College (Autonomous),K.R.Nagar,Kovilpatti – 628 503.Thoothukudi Dt, Tamil Nadu, India."]
+      },
+      {
         title: "Contact",
         details: ["placement@nec.edu.in", "04632-226955,222502", "ext:1062 & 1025", "www.nec.edu.in"],
+      },
+      {
+        title: "Email",
+        details:["principal@nec.edu.in Fax:04632 – 232749www.nec.edu.in"]
+
       },
       {
         title: "Dean-Training and Placement Centre",
@@ -266,6 +278,11 @@ const Home = () => {
         title: "Placement Convener",
         details: ["Dr.V.Manimaran", "94432 30265"],
       },
+      {
+        title:"Help desk",
+        details: ["nechelpdesk@nec.edu.in"]
+      }
+      
     ].map((contact, index) => (
       <div className="contact-card" key={index}>
         <div className="contact-info">
@@ -290,6 +307,7 @@ const Home = () => {
     <p>Email: <a href="mailto:principal@nec.edu.in">principal@nec.edu.in</a></p>
   </div>
 </footer>
+
 
 
 

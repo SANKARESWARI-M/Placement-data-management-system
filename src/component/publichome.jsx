@@ -13,6 +13,13 @@ const Home = () => {
   const [filteredData, setFilteredData] = useState([]); // ✅ Holds filtered data
   const [selectedYear, setSelectedYear] = useState("");
 
+  const images = [
+    "https://nec.edu.in/wp-content/uploads/2024/05/IMG_20220915_145123-scaled-e1715150167202.jpg",
+    "https://nec.edu.in/wp-content/uploads/2024/05/IMG_20220903_192620-scaled.jpg",
+    "https://nec.edu.in/wp-content/uploads/2023/04/placment-22-23-copy.webp",
+    "https://nec.edu.in/wp-content/uploads/2023/04/placement_2020_2021-scaled-copy.webp",
+  ];
+
 
   // Fetch placement stats
   useEffect(() => {
@@ -158,6 +165,14 @@ const Home = () => {
           </li>
         </ul>
 
+        <div className="image-grid">
+      {images.map((image, index) => (
+        <div key={index} className="grid-item">
+          <img src={image} alt={`Placement Batch ${index + 1}`} />
+        </div>
+      ))}
+    </div>
+
         {/* Dropdown for selecting a company */}
         <div className="dropdown-container">
           <label>Select Company: </label>
@@ -216,47 +231,26 @@ const Home = () => {
         ) : (
           <p>No students found for the selected company.</p>
         )}
-        {/* Batch Images Section
-        {/* Batch Images Section 
-<div className="container">
-  <h2 className="section-title">Recent Placement Batches</h2>
-  <div className="batch-grid">
-    {[
-      {
-        img: "https://nec.edu.in/wp-content/uploads/2024/05/IMG_20220915_145123-scaled-e1715150167202.jpg",
-        year: "2024-2025",
-      },
-      {
-        img: "https://nec.edu.in/wp-content/uploads/2024/05/IMG_20220903_192620-scaled.jpg",
-        year: "2023-2024",
-      },
-      {
-        img: "https://nec.edu.in/wp-content/uploads/2023/04/placment-22-23-copy.webp",
-        year: "2022-2023",
-      },
-      {
-        img: "https://nec.edu.in/wp-content/uploads/2023/04/placement_2020_2021-scaled-copy.webp",
-        year: "2020-2021",
-      },
-    ].map((batch, index) => (
-      <div className="batch-card" key={index}>
-        <img src={batch.img} alt={`${batch.year} Batch`} />
-        <p>{batch.year} Batch</p>
-      </div>
-    ))}
-  </div>
-</div>*/}
+        
 
       </div> 
-
-      {/* Contact Information Section */}
+{/* Contact Information Section */}
 <div className="container">
   <h2 className="section-title">Contact Information</h2>
   <div className="contact-grid">
     {[
       {
+        title: "Address",
+        details:["National Engineering College (Autonomous),K.R.Nagar,Kovilpatti – 628 503.Thoothukudi Dt, Tamil Nadu, India."]
+      },
+      {
         title: "Contact",
         details: ["placement@nec.edu.in", "04632-226955,222502", "ext:1062 & 1025", "www.nec.edu.in"],
+      },
+      {
+        title: "Email",
+        details:["principal@nec.edu.in Fax:04632 – 232749www.nec.edu.in"]
+
       },
       {
         title: "Dean-Training and Placement Centre",
@@ -266,6 +260,11 @@ const Home = () => {
         title: "Placement Convener",
         details: ["Dr.V.Manimaran", "94432 30265"],
       },
+      {
+        title:"Help desk",
+        details: ["nechelpdesk@nec.edu.in"]
+      }
+      
     ].map((contact, index) => (
       <div className="contact-card" key={index}>
         <div className="contact-info">
