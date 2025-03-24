@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../styles/home.css";
 import Navbar from "./navbar";
+import ImageSlider from "../imageslider"; 
 
 const Home = () => {
   const [stats, setStats] = useState({ total_students: 0, avg_salary: 0 });
@@ -115,6 +116,10 @@ useEffect(() => {
             <p>₹{Number(stats.avg_salary).toFixed(2)} LPA</p>
           </div>
         </div>
+        <div className="container">
+  {/* <h2 className="section-title">Recent Placement Batches</h2> */}
+  <ImageSlider /> {/* ✅ This will show the automatic image slider */}
+</div>
 
         <h2 className="home-subheading">PLACEMENT CENTER</h2>
           <p className="home-text">
