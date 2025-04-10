@@ -1,0 +1,201 @@
+/* 🌟 Admin Page - General Container */
+.admin-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f9fafb;
+  padding: 20px;
+}
+
+/* 🎯 Admin Form Box */
+.admin-box {
+  background: white;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s;
+}
+
+.admin-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 🏷️ Title */
+.admin-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  color: #1e40af;
+  margin-bottom: 20px;
+}
+
+/* 📝 Input Fields */
+textarea, input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+textarea:focus, input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
+}
+
+/* 🎯 Submit Button */
+#hack-btn {
+  width: 60%;
+  padding: 12px;
+  margin-top: 15px;
+  background: linear-gradient(135deg, #007bff, #00d4ff);
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.2s;
+  margin-left: 20%;
+}
+
+#hack-btn:hover {
+  background: #1e3a8a;
+  transform: scale(1.05);
+}
+
+.hackathon-list-container {
+  margin-top: 24px;
+  background: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+  width: auto;  /* Allow content to define the width */
+  min-width: 80%; /* Ensure it takes at least 80% of the screen */
+  max-width: 800px; /* Increase max width */
+  transition: transform 0.2s ease-in-out;
+  margin-left: 150px;
+}
+
+/* .hackathon-list-container:hover {
+  transform: translateY(-2px);
+} */
+
+/* 🎯 Hackathon Title */
+.hackathon-title {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  color: #374151;
+  margin-bottom: 16px;
+}
+
+/* 🚫 No Hackathons Message */
+.no-hackathons {
+  text-align: center;
+  color: #6b7280;
+  font-size: 16px;
+  font-style: italic;
+}
+
+/* 📝 Hackathon List */
+.hackathon-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 📌 Individual Hackathon Item */
+.hackathon-item {
+  padding: 18px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #f9fafb;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  padding:10px;
+  margin: 20px;
+}
+
+/* .hackathon-item:hover {
+  background: #eef2ff;
+  transform: scale(1.02);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+} */
+
+/* 📌 Hackathon Text */
+.hackathon-content {
+  font-size: 16px;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+/* 🔗 Hackathon Link */
+.hackathon-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s;
+  
+}
+
+.hackathon-link:hover {
+  color: #1e3a8a;
+  text-decoration: underline;
+}
+
+/* ⏳ Timestamp */
+.hackathon-timestamp {
+  display: block;
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+#del-button{
+  margin-left: 470px;
+  width: 20%;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  background: linear-gradient(135deg, #007bff, #00d4ff);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+#del-button:hover {
+  background: linear-gradient(135deg, #007bff, #00d4ff);
+}
+
+
+/* 📱 Responsive Design */
+@media (max-width: 500px) {
+  .admin-box, .hackathon-list-container {
+    width: 90%;
+  }
+}
+
+/* 📜 Admin Form Section */
+.form {
+  width: 60%;
+  margin-left: 20%;
+  padding: 5%;
+  background-color: rgb(132, 217, 245);
+  border-radius: 40px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.form:hover {
+  transform: translateY(-2px);
+}

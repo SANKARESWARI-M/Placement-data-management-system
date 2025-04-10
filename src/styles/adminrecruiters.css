@@ -1,0 +1,126 @@
+.addd-recuriter {
+    max-width: 600px;
+    margin: 10px auto;
+    padding: 25px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  .addd-recuriter input[type="text"],
+  .addd-recuriter input[type="file"] {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    transition: border 0.3s ease;
+    
+  }
+  
+  form#add-recuriter input[type="text"]:focus,
+  form#add-recuriter input[type="file"]:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+
+  .addcom-btn{
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    margin-left: 680px;
+    width:20%;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  #addcom{
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    margin-left: 150px;
+    width:50%;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  form#add-recuriter, button#addcom:hover {
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+  }
+  
+
+  #recuriter-heading {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-family: "Segoe UI", sans-serif;
+    position: relative;
+  }
+  
+  #recuriter-heading::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #007bff;
+    margin: 10px auto 0;
+    border-radius: 2px;
+  }
+  
+
+
+.company-logo {
+    background-color: #ffffff;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .company-logo img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+    object-fit: contain;
+  }
+  
+  .company-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .edit-button,
+  .delete-button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+  }
+  
+  .edit-button {
+    background: linear-gradient(135deg, #007bff, #00d4ff); /* amber */
+    color: white;
+  }
+  
+  .edit-button:hover {
+    background-color: #d97706;
+  }
+  
+  .delete-button {
+    background: linear-gradient(135deg, #007bff, #00d4ff); /* red */
+    color: white;
+  }
+  
+  .delete-button:hover {
+    background-color: #dc2626;
+  }
+  

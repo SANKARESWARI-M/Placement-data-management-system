@@ -42,7 +42,7 @@ const Login = () => {
           if (role === "admin") navigate("/admin-home");
           else if (role === "student") navigate("/home");
           else if (role === "staff") navigate("/staff-home");
-        }, 3000);
+        }, 1000);
       }
     } catch (error) {
       setAlertMessage("❌ " + (error.response?.data?.message || "Login failed!"));

@@ -1,6 +1,7 @@
 /* General Container */
 .home-container {
-  max-width: 1200px;
+  /* max-width: 1200px; */
+  width: 100%;
   margin: 20px auto;
   padding: 20px;
   background: #ffffff;
@@ -524,3 +525,24 @@ tbody tr:hover {
     grid-template-columns: repeat(1, 1fr); /* 1 image per row for mobile screens */
   }
 }
+
+
+.chart-container {
+  background: #2375f0;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  margin: 40px auto;
+  max-width: 1000px;
+  transition: transform 0.3s ease;
+}
+
+.chart-title {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+

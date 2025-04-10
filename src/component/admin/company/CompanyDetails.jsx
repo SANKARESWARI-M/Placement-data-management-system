@@ -132,6 +132,7 @@ const CompanyDetails = () => {
             <p>No logo available</p>
           )}
         </div>
+        
       </div>
 
       <div className="company-info">

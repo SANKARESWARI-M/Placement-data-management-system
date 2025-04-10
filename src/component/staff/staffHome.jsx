@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../styles/home.css";
-import Navbar from "./staffnavbar"
-import Clgimg from "../../assets/clg.jpg";
+import Navbar from "./staffnavbar";
 import ImageSlider from "../imageslider"; 
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  Legend
+} from "recharts";
 
 const Home = () => {
   const [stats, setStats] = useState({ total_students: 0, avg_salary: 0 });
@@ -13,6 +24,7 @@ const Home = () => {
   const [filteredData, setFilteredData] = useState([]); // ✅ Holds filtered data
   const [selectedYear, setSelectedYear] = useState("");
 
+
   const images = [
     "https://nec.edu.in/wp-content/uploads/2024/05/IMG_20220915_145123-scaled-e1715150167202.jpg",
     "https://nec.edu.in/wp-content/uploads/2024/05/IMG_20220903_192620-scaled.jpg",
@@ -20,19 +32,51 @@ const Home = () => {
     "https://nec.edu.in/wp-content/uploads/2023/04/placement_2020_2021-scaled-copy.webp",
   ];
 
-
-  // Fetch placement stats
-  useEffect(() => {
-    fetch("http://localhost:5000/stats")
-      .then((response) => response.json())
-      .then((data) => {
-        setStats({
-          total_students: data.total_students || 0,
-          avg_salary: parseFloat(data.avg_salary) || 0,
-        });
-      })
-      .catch((error) => console.error("Error fetching stats:", error));
-  }, []);
+   // Fetch placement stats
+   useEffect(() => {
+     fetch("http://localhost:5000/stats")
+       .then((response) => response.json())
+       .then((data) => {
+         setStats({
+           total_students: data.total_students || 0,
+           avg_salary: parseFloat(data.avg_salary) || 0,
+           highest_salary: parseFloat(data.highest_salary) || 0,
+         });
+       })
+       .catch((error) => console.error("Error fetching stats:", error));
+   }, []);
+ 
+ 
+   const [yearWiseData, setYearWiseData] = useState([]);
+ 
+ useEffect(() => {
+   fetch("http://localhost:5000/placed-students")
+     .then((res) => res.json())
+     .then((data) => {
+       setStudentDetails(data);
+       setFilteredData(data);
+ 
+       // 🧠 Group students by year
+       const yearCount = {};
+       data.forEach((student) => {
+         const year = student.year;
+         yearCount[year] = (yearCount[year] || 0) + 1;
+       });
+ 
+       // 📦 Format for chart
+       const formattedData = Object.entries(yearCount).map(([year, count]) => ({
+         year,
+         count,
+       }));
+ 
+       // ✅ Sort by year
+       formattedData.sort((a, b) => a.year - b.year);
+ 
+       setYearWiseData(formattedData);
+     })
+     .catch((error) => console.error("Error fetching students:", error));
+ }, []);
+ 
 
   // Fetch all placed students initially
   useEffect(() => {
@@ -69,41 +113,39 @@ const Home = () => {
   //filter by company or year
   const handleSubmit = () => {
     console.log(`Filtering data for company: ${selectedCompany}, year: ${selectedYear}`);
-
+  
     let filteredResults = studentDetails;
-
+  
     if (selectedCompany) {
       filteredResults = filteredResults.filter(student => student.company_name === selectedCompany);
     }
-
+  
     if (selectedYear) {
       filteredResults = filteredResults.filter(student => student.year.toString() === selectedYear);
     }
-
+  
     filteredResults.sort((a, b) => a.year - b.year); // ✅ Ensure sorting remains after filtering
-
+  
     console.log("Filtered Data:", filteredResults);
     setFilteredData(filteredResults);
   };
 
-   const [recruiterCount, setRecruiterCount] = useState(0);
-  
-    useEffect(() => {
-      fetch("http://localhost:5000/api/recruiterscount") // ✅ Corrected API URL
-        .then((res) => res.json())
-        .then((data) => {
-          setRecruiterCount(data.total); // ✅ Corrected data usage
-        })
-        .catch((error) => console.error("Error fetching recruiter count:", error));
-    }, []);
+  const [recruiterCount, setRecruiterCount] = useState(0);
+
+useEffect(() => {
+  fetch("http://localhost:5000/api/recruiterscount") // ✅ Corrected API URL
+    .then((res) => res.json())
+    .then((data) => {
+      setRecruiterCount(data.total); // ✅ Corrected data usage
+    })
+    .catch((error) => console.error("Error fetching recruiter count:", error));
+}, []);
 
 
   return (
     <>
       <Navbar />
       <div className="home-container">
-        <h3>NEC PLACEMENT</h3>
-        <img src={Clgimg} alt="College Image" />
         {/* Statistics Section */}
         <div className="stats-container">
           <div className="stat-box">
@@ -113,6 +155,10 @@ const Home = () => {
           <div className="stat-box">
             <h3>Recruiters</h3>
             <p>{recruiterCount}</p>
+          </div>
+          <div className="stat-box">
+            <h3>Highest Salary</h3>
+            <p><p>₹{Number(stats.highest_salary).toFixed(2)} LPA</p></p>
           </div>
           <div className="stat-box">
             <h3>Average Salary</h3>
@@ -125,41 +171,54 @@ const Home = () => {
 </div>
 
         <h2 className="home-subheading">PLACEMENT CENTER</h2>
-        <p className="home-text">
-          Welcome to the Placement program of National Engineering College. This program consists of a
-          dedicated and efficient placement team of students and staff who function round the year to
-          ensure that students are placed in reputed companies across the country. Continuous placement
-          training is offered to equip students with communication, soft skills, confidence building,
-          interview skills, and test of reasoning by experts in the respective fields. Career development
-          programs are regularly conducted through accomplished resource persons across a broad spectrum
-          of industries.
-        </p>
+          <p className="home-text">
+              Welcome to the Placement program of National Engineering College. This program consists of a 
+              dedicated and efficient placement team of students and staff who function round the year to 
+              ensure that students are placed in reputed companies across the country. Continuous placement 
+              training is offered to equip students with communication, soft skills, confidence building, 
+              interview skills, and test of reasoning by experts in the respective fields. Career development 
+              programs are regularly conducted through accomplished resource persons across a broad spectrum 
+              of industries.
+          </p>
 
-        <h2 className="home-subheading">Functions of Placement Centre</h2>
-        <ul className="home-list">
-          <li>To Organize On / Off campus Interviews for the final year students.</li>
-          <li>To Promote Industry-Institute Interface activities.</li>
-          <li>To Arrange Career / Personal Counselling sessions.</li>
-          <li>To Organize Career Guidance sessions and Personality Development programs.</li>
-          <li>To Organize Functional Skill Development Programs.</li>
-          <li>To Organize Placement Training Programs like:
-            <ul>
-              <li>Aptitude programs</li>
-              <li>Life skills programs</li>
-              <li>Motivational sessions</li>
-              <li>Resume Writing</li>
-              <li>Group discussions</li>
-              <li>Mock Interviews</li>
-            </ul>
-          </li>
-        </ul>
-        <div className="image-grid">
-      {images.map((image, index) => (
-        <div key={index} className="grid-item">
-          <img src={image} alt={`Placement Batch ${index + 1}`} />
-        </div>
-      ))}
-    </div>
+          <h2 className="home-subheading">Functions of Placement Centre</h2>
+          <ul className="home-list">
+              <li>To Organize On / Off campus Interviews for the final year students.</li>
+              <li>To Promote Industry-Institute Interface activities.</li>
+              <li>To Arrange Career / Personal Counselling sessions.</li>
+              <li>To Organize Career Guidance sessions and Personality Development programs.</li>
+              <li>To Organize Functional Skill Development Programs.</li>
+              <li>To Organize Placement Training Programs like:
+                  <ul>
+                      <li>Aptitude programs</li>
+                      <li>Life skills programs</li>
+                      <li>Motivational sessions</li>
+                      <li>Resume Writing</li>
+                      <li>Group discussions</li>
+                      <li>Mock Interviews</li>
+                  </ul>
+              </li>
+          </ul>
+
+          <div className="chart-container">
+            <h2 className="chart-title">Year-wise Placement Statistic</h2>
+            <ResponsiveContainer width="100%" height={400}>
+              <LineChart
+                data={yearWiseData}
+                margin={{ top: 20, right: 30, left: 20, bottom: 2 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="year" />
+                <YAxis allowDecimals={false} />
+                <Tooltip />
+                <Legend />
+                <Line type="linear" dataKey="count" stroke="#2375f0" strokeWidth={3} dot={{ r: 5 }} activeDot={{ r: 7 }} />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+
+
+          
 
         {/* Dropdown for selecting a company */}
         <div className="dropdown-container">
@@ -175,17 +234,14 @@ const Home = () => {
           </select>
 
           <label>Select Year: </label>
-          <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
-            <option value="">-- Show All Years --</option>
-            {Array.from(new Set(studentDetails.map(student => student.year))).sort().map((year, index) => (
-              <option key={index} value={year}>{year}</option>
-            ))}
-          </select>
+  <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
+    <option value="">-- Show All Years --</option>
+    {Array.from(new Set(studentDetails.map(student => student.year))).sort().map((year, index) => (
+      <option key={index} value={year}>{year}</option>
+    ))}
+  </select>
           <button className="submit-btn" onClick={handleSubmit}>Filter</button>
         </div>
-
-
-
 
         {/* Student Details Table */}
         {filteredData.length > 0 ? (
@@ -219,38 +275,16 @@ const Home = () => {
         ) : (
           <p>No students found for the selected company.</p>
         )}
-        {/* Batch Images Section
-        {/* Batch Images Section 
-<div className="container">
-  <h2 className="section-title">Recent Placement Batches</h2>
-  <div className="batch-grid">
-    {[
-      {
-        img: "https://nec.edu.in/wp-content/uploads/2024/05/IMG_20220915_145123-scaled-e1715150167202.jpg",
-        year: "2024-2025",
-      },
-      {
-        img: "https://nec.edu.in/wp-content/uploads/2024/05/IMG_20220903_192620-scaled.jpg",
-        year: "2023-2024",
-      },
-      {
-        img: "https://nec.edu.in/wp-content/uploads/2023/04/placment-22-23-copy.webp",
-        year: "2022-2023",
-      },
-      {
-        img: "https://nec.edu.in/wp-content/uploads/2023/04/placement_2020_2021-scaled-copy.webp",
-        year: "2020-2021",
-      },
-    ].map((batch, index) => (
-      <div className="batch-card" key={index}>
-        <img src={batch.img} alt={`${batch.year} Batch`} />
-        <p>{batch.year} Batch</p>
       </div>
-    ))}
-  </div>
-</div>*/}
 
-      </div> 
+      <div className="image-grid">
+      {images.map((image, index) => (
+        <div key={index} className="grid-item">
+          <img src={image} alt={`Placement Batch ${index + 1}`} />
+        </div>
+      ))}
+    </div>
+
 
       {/* Contact Information Section */}
 <div className="container">
@@ -299,23 +333,22 @@ const Home = () => {
 {/* Footer */}
 <footer className="footer">
   <div className="container">
-    <h3>The Principal</h3>
-    <p>National Engineering College, (Autonomous)</p>
-    <p>K.R.Nagar, Kovilpatti, Thoothukudi (Dt) - 628503</p>
-    <p>Ph: 04632 – 222 502; Fax: 232749</p>
-    <p>Mobile: 93859 76674, 93859 76684</p>
-    <p>Email: <a href="mailto:principal@nec.edu.in">principal@nec.edu.in</a></p>
+    <div className="contact-info">
+      <h3>The Principal</h3>
+      <p>National Engineering College, (Autonomous)</p>
+      <p>K.R.Nagar, Kovilpatti, Thoothukudi (Dt) - 628503</p>
+      <p>Ph: 04632 – 222 502 | Fax: 232749</p>
+      <p>Mobile: 93859 76674, 93859 76684</p>
+      <p>Email: <a href="mailto:principal@nec.edu.in">principal@nec.edu.in</a></p>
+    </div>
+  </div>
+  <div className="footer-bottom">
+    <p>© {new Date().getFullYear()} National Engineering College. All Rights Reserved.</p>
   </div>
 </footer>
 
-
-
-
-    {/* </div > */}
     </>
   );
 };
 
 export default Home;
-
-

@@ -3,6 +3,18 @@ import axios from "axios";
 import "../../styles/home.css";
 import Navbar from "./navbar";
 import ImageSlider from "../imageslider"; 
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  Legend
+} from "recharts";
 
 const Home = () => {
   const [stats, setStats] = useState({ total_students: 0, avg_salary: 0 });
@@ -20,18 +32,51 @@ const Home = () => {
     "https://nec.edu.in/wp-content/uploads/2023/04/placement_2020_2021-scaled-copy.webp",
   ];
 
-  // Fetch placement stats
-  useEffect(() => {
-    fetch("http://localhost:5000/stats")
-      .then((response) => response.json())
-      .then((data) => {
-        setStats({
-          total_students: data.total_students || 0,
-          avg_salary: parseFloat(data.avg_salary) || 0,
-        });
-      })
-      .catch((error) => console.error("Error fetching stats:", error));
-  }, []);
+   // Fetch placement stats
+   useEffect(() => {
+     fetch("http://localhost:5000/stats")
+       .then((response) => response.json())
+       .then((data) => {
+         setStats({
+           total_students: data.total_students || 0,
+           avg_salary: parseFloat(data.avg_salary) || 0,
+           highest_salary: parseFloat(data.highest_salary) || 0,
+         });
+       })
+       .catch((error) => console.error("Error fetching stats:", error));
+   }, []);
+ 
+ 
+   const [yearWiseData, setYearWiseData] = useState([]);
+ 
+ useEffect(() => {
+   fetch("http://localhost:5000/placed-students")
+     .then((res) => res.json())
+     .then((data) => {
+       setStudentDetails(data);
+       setFilteredData(data);
+ 
+       // 🧠 Group students by year
+       const yearCount = {};
+       data.forEach((student) => {
+         const year = student.year;
+         yearCount[year] = (yearCount[year] || 0) + 1;
+       });
+ 
+       // 📦 Format for chart
+       const formattedData = Object.entries(yearCount).map(([year, count]) => ({
+         year,
+         count,
+       }));
+ 
+       // ✅ Sort by year
+       formattedData.sort((a, b) => a.year - b.year);
+ 
+       setYearWiseData(formattedData);
+     })
+     .catch((error) => console.error("Error fetching students:", error));
+ }, []);
+ 
 
   // Fetch all placed students initially
   useEffect(() => {
@@ -112,6 +157,10 @@ useEffect(() => {
             <p>{recruiterCount}</p>
           </div>
           <div className="stat-box">
+            <h3>Highest Salary</h3>
+            <p><p>₹{Number(stats.highest_salary).toFixed(2)} LPA</p></p>
+          </div>
+          <div className="stat-box">
             <h3>Average Salary</h3>
             <p>₹{Number(stats.avg_salary).toFixed(2)} LPA</p>
           </div>
@@ -151,14 +200,25 @@ useEffect(() => {
               </li>
           </ul>
 
+          <div className="chart-container">
+            <h2 className="chart-title">Year-wise Placement Statistic</h2>
+            <ResponsiveContainer width="100%" height={400}>
+              <LineChart
+                data={yearWiseData}
+                margin={{ top: 20, right: 30, left: 20, bottom: 2 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="year" />
+                <YAxis allowDecimals={false} />
+                <Tooltip />
+                <Legend />
+                <Line type="linear" dataKey="count" stroke="#2375f0" strokeWidth={3} dot={{ r: 5 }} activeDot={{ r: 7 }} />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
 
-          <div className="image-grid">
-      {images.map((image, index) => (
-        <div key={index} className="grid-item">
-          <img src={image} alt={`Placement Batch ${index + 1}`} />
-        </div>
-      ))}
-    </div>
+
+          
 
         {/* Dropdown for selecting a company */}
         <div className="dropdown-container">
@@ -182,9 +242,6 @@ useEffect(() => {
   </select>
           <button className="submit-btn" onClick={handleSubmit}>Filter</button>
         </div>
-
-        
-
 
         {/* Student Details Table */}
         {filteredData.length > 0 ? (
@@ -219,6 +276,14 @@ useEffect(() => {
           <p>No students found for the selected company.</p>
         )}
       </div>
+
+      <div className="image-grid">
+      {images.map((image, index) => (
+        <div key={index} className="grid-item">
+          <img src={image} alt={`Placement Batch ${index + 1}`} />
+        </div>
+      ))}
+    </div>
 
 
       {/* Contact Information Section */}

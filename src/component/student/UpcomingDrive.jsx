@@ -90,14 +90,14 @@ const StudentUpcomingDrives = () => {
               <p><strong>Time:</strong> {drive.time}</p>
               <p><strong>Venue:</strong> {drive.venue}</p>
               <p><strong>Role:</strong> {drive.roles}</p>
-              <p><strong>Salary:</strong> {drive.salary}</p>
+              <p><strong>Package:</strong> {drive.salary}</p>
 
               <button
                 className="register-btn"
                 onClick={() => handleRegister(drive.id, drive.company_name)}
                 disabled={registeredDrives.includes(drive.company_name)}
               >
-                {registeredDrives.includes(drive.company_name) ? "Registered" : "Register"}
+                {registeredDrives.includes(drive.company_name) ? "Applied" : "Apply"}
               </button>
             </div>
           ))}

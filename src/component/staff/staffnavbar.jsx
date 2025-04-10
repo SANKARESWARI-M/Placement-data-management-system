@@ -22,6 +22,7 @@ const Navbar = () => {
       <li><Link to="/staff-recruiters">Recruiters</Link></li>  
        <li><Link to="/staff-upcomingdrive">Upcoming Drive</Link></li>
        <li><Link to="/staff-tutorward">Students details</Link></li>
+       <li><Link to="/staff-hackathon">Hackathon</Link></li>
       </ul>
 
       {/* Right Section: Icons & Logout */}

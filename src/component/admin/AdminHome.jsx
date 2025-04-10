@@ -287,15 +287,19 @@ const Home = () => {
   </div>
 </div>
 
-{/* Footer */}
 <footer className="footer">
   <div className="container">
-    <h3>The Principal</h3>
-    <p>National Engineering College, (Autonomous)</p>
-    <p>K.R.Nagar, Kovilpatti, Thoothukudi (Dt) - 628503</p>
-    <p>Ph: 04632 – 222 502; Fax: 232749</p>
-    <p>Mobile: 93859 76674, 93859 76684</p>
-    <p>Email: <a href="mailto:principal@nec.edu.in">principal@nec.edu.in</a></p>
+    <div className="contact-info">
+      <h3>The Principal</h3>
+      <p>National Engineering College, (Autonomous)</p>
+      <p>K.R.Nagar, Kovilpatti, Thoothukudi (Dt) - 628503</p>
+      <p>Ph: 04632 – 222 502 | Fax: 232749</p>
+      <p>Mobile: 93859 76674, 93859 76684</p>
+      <p>Email: <a href="mailto:principal@nec.edu.in">principal@nec.edu.in</a></p>
+    </div>
+  </div>
+  <div className="footer-bottom">
+    <p>© {new Date().getFullYear()} National Engineering College. All Rights Reserved.</p>
   </div>
 </footer>
 

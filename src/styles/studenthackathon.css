@@ -1,0 +1,146 @@
+/* 🎯 Main Container */
+.hackathon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #3463c2;
+  padding: 20px;
+  width: 100%;
+}
+
+/* 📌 Hackathon Box */
+.hackathon-box {
+  background: rgb(255, 255, 255);
+  /* padding: 25px; */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  width: 80%;
+  /* max-width: 800px; Increased max width for better readability */
+  transition: transform 0.2s ease-in-out;
+}
+
+/* .hackathon-box:hover {
+  transform: translateY(-3px);
+} */
+
+/* 🏆 Title */
+.hackathon-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 20px;
+  padding:20px;
+}
+
+/* 📋 Hackathon List */
+.hackathon-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* 🎟️ Individual Hackathon Item */
+.hackathon-item {
+  padding: 18px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #f9fafb;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin:50px;
+}
+/* 
+.hackathon-item:hover {
+  background: #e0e7ff;
+  transform: scale(1.03);
+} */
+
+/* 📝 Hackathon Content */
+.hackathon-content {
+  font-size: 17px;
+  color: #1f2937;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* 🔗 Register Button */
+.hackathon-button {
+  display: inline-block;
+  margin-top: 12px;
+  width: 30%;
+  background: linear-gradient(135deg, #007bff, #00d4ff);
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+  text-align: center;
+  text-decoration: none;
+  margin-left: 400px;
+}
+
+.hackathon-button:hover {
+  background: #1e3a8a;
+  transform: scale(1.04);
+}
+
+/* ⏳ Timestamp */
+.hackathon-timestamp {
+  display: block;
+  font-size: 15px;
+  color: #6b7280;
+  margin-top: 8px;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+  .hackathon-box {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .hackathon-title {
+    font-size: 24px;
+  }
+
+  .hackathon-item {
+    padding: 14px;
+  }
+
+  .hackathon-content {
+    font-size: 16px;
+  }
+
+  .hackathon-button {
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hackathon-box {
+    width: 100%;
+    padding: 18px;
+  }
+
+  .hackathon-title {
+    font-size: 22px;
+  }
+
+  .hackathon-item {
+    padding: 12px;
+  }
+
+  .hackathon-button {
+    font-size: 15px;
+    padding: 10px;
+  }
+}

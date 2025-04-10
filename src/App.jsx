@@ -22,6 +22,10 @@ import StaffNavbar from "./component/staff/staffnavbar";
 import StaffRecruiter from "./component/staff/staffRecruiters"
 import StaffUpcommingDrive from "./component/staff/staffUpcommingDrive";
 import Tutorward from "./component/staff/tutorward";
+import AdminHackathon from "./component/admin/Hackathon";
+import StudentHackathon from "./component/student/Hackathon";
+import EditCompany from "./component/admin/company/EditCompanyDetails";
+import StaffHackathon from "./component/staff/staffhackathon";
 
 // Function to Get User Role (Stored in localStorage)
 const getUserRole = () => {
@@ -52,6 +56,7 @@ const App = () => {
         <Route path="/staff-recruiters" element={<StaffRecruiter/>}/>
         <Route path="/staff-upcomingdrive" element={<StaffUpcommingDrive/>}/>
         <Route path="/staff-tutorward" element={<Tutorward/>}/>
+        <Route path="/staff-hackathon" element={<StaffHackathon/>}/>
         
         {/* Student Routes - Wrapped with Student Navbar */}
         <Route path="/home" element={<Layout><StudentHome /></Layout>} />
@@ -60,6 +65,7 @@ const App = () => {
         <Route path='/upcoming-drive' element={<Layout><UpcomingDrives /></Layout>} />
         <Route path='/status' element={<Layout><Status /></Layout>} />
         <Route path="/studentprofile" element={<Layout><StudentProfile /></Layout>} />
+        <Route path="/hackathon" element={<StudentHackathon/>}/>
 
         {/* Admin Routes - Wrapped with Admin Navbar */}
         <Route path="/admin-home" element={<Layout><HomePage /></Layout>} />
@@ -68,6 +74,10 @@ const App = () => {
         <Route path="/admin-upcoming-drive" element={<Layout><AdminUpcomingDrives /></Layout>} />
         <Route path="/company/:companyName" element={<Layout><CompanyDetails /></Layout>} />
         <Route path="/admin-registered-students" element={<Layout><RegisteredStudents /></Layout>} />
+        <Route path="/admin-hackathon" element={<AdminHackathon/>}/>
+        <Route path="/admin/edit-company/:companyName" element={<EditCompany />} />
+
+
 
         {/* Redirect unknown paths */}
         <Route path="*" element={<Navigate to="/" />} />

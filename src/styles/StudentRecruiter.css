@@ -1,66 +1,140 @@
-/* Main Recruiters Container */
-.recruiters-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 20px;
+/* AdminRegisterStudents.css */
+
+.admin-dashboard {
+  width: 90%;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.search-container input {
+  padding: 8px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.admin-controls {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.admin-controls select,
+.admin-controls button {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.admin-controls button {
+  background: linear-gradient(135deg, #007bff, #00d4ff);
+  color: white;
+  border: none;
+}
+
+.admin-controls button:hover {
+  background: linear-gradient(135deg, #007bff, #00d4ff);
+}
+
+.display-register-students {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: auto;
+  display: block;
+  max-width: 100%;
+}
+
+th, td {
+  border: 1px solid #0a0b0c;
+  padding: 8px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  background-color: #4895bf;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Responsive Table */
+@media screen and (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
   }
-  
-  /* Individual Recruiter Card */
-  .recruiter-card {
+
+  .admin-controls {
+    flex-direction: column;
+  }
+
+  .search-container {
     text-align: center;
-    background: #ffffff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    width: 180px;
-    cursor: pointer;
   }
-  
-  .recruiter-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+
+  .search-container input {
+    width: 100%;
   }
-  
-  /* Recruiter Logo */
-  .recruiter-logo {
-    width: 100px;
-    height: auto;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    transition: opacity 0.3s ease-in-out;
-  }
-  
-  .recruiter-logo:hover {
-    opacity: 0.8;
-  }
-  
-  /* Company Name */
-  .company-name {
-    font-size: 14px;
-    font-weight: bold;
-    color: #333;
-    margin-top: 5px;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .recruiters-container {
-      gap: 15px;
-    }
-  
-    .recruiter-card {
-      width: 150px;
-    }
-  
-    .recruiter-logo {
-      width: 80px;
-    }
-  
-    .company-name {
-      font-size: 12px;
-    }
-  }
-  
+}
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.filter-container input,
+.filter-container select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.filter-container input[type="text"],
+.filter-container input[type="number"],
+.filter-container select {
+  width: 180px;
+}
+
+.filter-range {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filter-range label {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.filter-range input {
+  width: 80px;
+}

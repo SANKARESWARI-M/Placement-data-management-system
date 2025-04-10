@@ -1,9 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../styles/home.css"
+import "../styles/Home.css"
 import Navbar from "./publichomeNavbar"
 // import Clgimg from "../assets/clg.jpg"
 import ImageSlider from "./imageslider"; // Import ImageSlider
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  Legend
+} from "recharts";
+
 
 const Home = () => {
   const [stats, setStats] = useState({ total_students: 0, avg_salary: 0 });
@@ -29,10 +42,43 @@ const Home = () => {
         setStats({
           total_students: data.total_students || 0,
           avg_salary: parseFloat(data.avg_salary) || 0,
+          highest_salary: parseFloat(data.highest_salary) || 0,
         });
       })
       .catch((error) => console.error("Error fetching stats:", error));
   }, []);
+
+
+  const [yearWiseData, setYearWiseData] = useState([]);
+
+useEffect(() => {
+  fetch("http://localhost:5000/placed-students")
+    .then((res) => res.json())
+    .then((data) => {
+      setStudentDetails(data);
+      setFilteredData(data);
+
+      // 🧠 Group students by year
+      const yearCount = {};
+      data.forEach((student) => {
+        const year = student.year;
+        yearCount[year] = (yearCount[year] || 0) + 1;
+      });
+
+      // 📦 Format for chart
+      const formattedData = Object.entries(yearCount).map(([year, count]) => ({
+        year,
+        count,
+      }));
+
+      // ✅ Sort by year
+      formattedData.sort((a, b) => a.year - b.year);
+
+      setYearWiseData(formattedData);
+    })
+    .catch((error) => console.error("Error fetching students:", error));
+}, []);
+
 
   // Fetch all placed students initially
   useEffect(() => {
@@ -61,6 +107,9 @@ const Home = () => {
       .catch((error) => setCompanies([]));
   }, []);
 
+
+
+
   // Handle dropdown selection
   const handleCompanyChange = (event) => {
     setSelectedCompany(event.target.value);
@@ -86,42 +135,23 @@ const Home = () => {
     setFilteredData(filteredResults);
   };
 
-
-  // const [recruiterCount, setRecruiterCount] = useState(0);
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/placed-students") // ✅ Fetch all students initially
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       const sortedData = data.sort((a, b) => a.year - b.year); // ✅ Sort by year (ascending)
-  //       setStudentDetails(sortedData);
-  //       setFilteredData(sortedData); // ✅ Set sorted data initially
-
-  //       // ✅ Calculate unique recruiters (companies)
-  //       const uniqueCompanies = new Set(sortedData.map(student => student.company_name));
-  //       setRecruiterCount(uniqueCompanies.size);
-  //     })
-  //     .catch((error) => console.error("Error fetching students:", error));
-  // }, []);
-
   const [recruiterCount, setRecruiterCount] = useState(0);
-    
-      useEffect(() => {
-        fetch("http://localhost:5000/api/recruiterscount") // ✅ Corrected API URL
-          .then((res) => res.json())
-          .then((data) => {
-            setRecruiterCount(data.total); // ✅ Corrected data usage
-          })
-          .catch((error) => console.error("Error fetching recruiter count:", error));
-      }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/recruiterscount") // ✅ Corrected API URL
+      .then((res) => res.json())
+      .then((data) => {
+        setRecruiterCount(data.total); // ✅ Corrected data usage
+      })
+      .catch((error) => console.error("Error fetching recruiter count:", error));
+  }, []);
 
 
   return (
     <>
       <Navbar />
       <div className="home-container">
-        <h3 className="section-title">NEC Placement</h3>
-        {/* <img src={Clgimg} alt="College Image" /> */}
-        {/* Statistics Section */}
+        <h3 className="section-title">2025 Statistics</h3>
         <div className="stats-container">
           <div className="stat-box">
             <h3>Students Placed</h3>
@@ -132,19 +162,23 @@ const Home = () => {
             <p>{recruiterCount}</p>
           </div>
           <div className="stat-box">
+            <h3>Highest Salary</h3>
+            <p><p>₹{Number(stats.highest_salary).toFixed(2)} LPA</p></p>
+          </div>
+          <div className="stat-box">
             <h3>Average Salary</h3>
             <p>₹{Number(stats.avg_salary).toFixed(2)} LPA</p>
           </div>
         </div>
-      
 
 
-<div className="container">
-  {/* <h2 className="section-title">Recent Placement Batches</h2> */}
-  <ImageSlider /> {/* ✅ This will show the automatic image slider */}
-</div>
 
-      
+        <div className="container">
+          {/* <h2 className="section-title">Recent Placement Batches</h2> */}
+          <ImageSlider /> {/* ✅ This will show the automatic image slider */}
+        </div>
+
+
 
         <h2 className="home-subheading">PLACEMENT CENTER</h2>
         <p className="home-text">
@@ -176,13 +210,27 @@ const Home = () => {
           </li>
         </ul>
 
-        <div className="image-grid">
-      {images.map((image, index) => (
-        <div key={index} className="grid-item">
-          <img src={image} alt={`Placement Batch ${index + 1}`} />
-        </div>
-      ))}
-    </div>
+
+  <div className="chart-container">
+  <h2 className="chart-title">Year-wise Placement Statistic</h2>
+  <ResponsiveContainer width="100%" height={400}>
+    <LineChart
+      data={yearWiseData}
+      margin={{ top: 20, right: 30, left: 20, bottom: 2 }}
+    >
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="year" />
+      <YAxis allowDecimals={false} />
+      <Tooltip />
+      <Legend />
+      <Line type="linear" dataKey="count" stroke="#2375f0" strokeWidth={3} dot={{ r: 5 }} activeDot={{ r: 7 }} />
+    </LineChart>
+  </ResponsiveContainer>
+</div>
+
+
+
+        
 
         {/* Dropdown for selecting a company */}
         <div className="dropdown-container">
@@ -242,68 +290,80 @@ const Home = () => {
         ) : (
           <p>No students found for the selected company.</p>
         )}
-        
 
-      </div> 
-{/* Contact Information Section */}
-<div className="container">
-  <h2 className="section-title">Contact Information</h2>
-  <div className="contact-grid">
-    {[
-      {
-        title: "Address",
-        details:["National Engineering College (Autonomous),K.R.Nagar,Kovilpatti – 628 503.Thoothukudi Dt, Tamil Nadu, India."]
-      },
-      {
-        title: "Contact",
-        details: ["placement@nec.edu.in", "04632-226955,222502", "ext:1062 & 1025", "www.nec.edu.in"],
-      },
-      {
-        title: "Email",
-        details:["principal@nec.edu.in Fax:04632 – 232749www.nec.edu.in"]
+<div className="image-grid">
+          {images.map((image, index) => (
+            <div key={index} className="grid-item">
+              <img src={image} alt={`Placement Batch ${index + 1}`} />
+            </div>
+          ))}
+        </div>
 
-      },
-      {
-        title: "Dean-Training and Placement Centre",
-        details: ["Dr.K.G.Srinivasagan", "94421 42502"],
-      },
-      {
-        title: "Placement Convener",
-        details: ["Dr.V.Manimaran", "94432 30265"],
-      },
-      {
-        title:"Help desk",
-        details: ["nechelpdesk@nec.edu.in"]
-      }
-      
-    ].map((contact, index) => (
-      <div className="contact-card" key={index}>
-        <div className="contact-info">
-          <h3>{contact.title}</h3>
-          {contact.details.map((info, i) => (
-            <p key={i}>{info}</p>
+
+      </div>
+      {/* Contact Information Section */}
+      <div className="container">
+        <h2 className="section-title">Contact Information</h2>
+        <div className="contact-grid">
+          {[
+            {
+              title: "Address",
+              details: ["National Engineering College (Autonomous),K.R.Nagar,Kovilpatti – 628 503.Thoothukudi Dt, Tamil Nadu, India."]
+            },
+            {
+              title: "Contact",
+              details: ["placement@nec.edu.in", "04632-226955,222502", "ext:1062 & 1025", "www.nec.edu.in"],
+            },
+            {
+              title: "Email",
+              details: ["principal@nec.edu.in Fax:04632 – 232749www.nec.edu.in"]
+
+            },
+            {
+              title: "Dean-Training and Placement Centre",
+              details: ["Dr.K.G.Srinivasagan", "94421 42502"],
+            },
+            {
+              title: "Placement Convener",
+              details: ["Dr.V.Manimaran", "94432 30265"],
+            },
+            {
+              title: "Help desk",
+              details: ["nechelpdesk@nec.edu.in"]
+            }
+
+          ].map((contact, index) => (
+            <div className="contact-card" key={index}>
+              <div className="contact-info">
+                <h3>{contact.title}</h3>
+                {contact.details.map((info, i) => (
+                  <p key={i}>{info}</p>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </div>
-    ))}
-  </div>
-</div>
 
-{/* Footer */}
-<footer className="footer">
-  <div className="container">
-    <h3>The Principal</h3>
-    <p>National Engineering College, (Autonomous)</p>
-    <p>K.R.Nagar, Kovilpatti, Thoothukudi (Dt) - 628503</p>
-    <p>Ph: 04632 – 222 502; Fax: 232749</p>
-    <p>Mobile: 93859 76674, 93859 76684</p>
-    <p>Email: <a href="mailto:principal@nec.edu.in">principal@nec.edu.in</a></p>
-  </div>
-</footer>
+      <footer className="footer">
+        <div className="container">
+          <div className="contact-info">
+            <h3>The Principal</h3>
+            <p>National Engineering College, (Autonomous)</p>
+            <p>K.R.Nagar, Kovilpatti, Thoothukudi (Dt) - 628503</p>
+            <p>Ph: 04632 – 222 502 | Fax: 232749</p>
+            <p>Mobile: 93859 76674, 93859 76684</p>
+            <p>Email: <a href="mailto:principal@nec.edu.in">principal@nec.edu.in</a></p>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>© {new Date().getFullYear()} National Engineering College. All Rights Reserved.</p>
+        </div>
+      </footer>
 
 
 
-    {/* </div > */}
+      {/* </div > */}
     </>
   );
 };

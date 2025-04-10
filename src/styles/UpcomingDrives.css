@@ -11,7 +11,7 @@
   
   /* Title */
   .title {
-    color: #6e8efb;
+    color: #007bff;
     font-size: 2rem;
     margin-bottom: 15px;
   }
@@ -20,7 +20,7 @@
   .toggle-form-btn {
     padding: 12px 20px;
     font-size: 1rem;
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    background: linear-gradient(135deg, #007bff, #00d4ff);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -29,7 +29,7 @@
   }
   
   .toggle-form-btn:hover {
-    background: linear-gradient(135deg, #a777e3, #6e8efb);
+    background: linear-gradient(135deg, #007bff, #00d4ff);
     transform: scale(1.05);
   }
   
@@ -85,11 +85,11 @@
   }
   
   /* Submit Button */
-  button {
+  #up-sub,.delete-btn {
     width: 100%;
     padding: 12px;
     font-size: 1rem;
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    background: linear-gradient(135deg, #007bff, #00d4ff);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -98,8 +98,8 @@
     transition: all 0.3s ease-in-out;
   }
   
-  button:hover {
-    background: linear-gradient(135deg, #a777e3, #6e8efb);
+  #up-sub:hover,#delete-btn:hover {
+    background: linear-gradient(135deg, #007bff, #00d4ff);
     transform: scale(1.05);
   }
   
